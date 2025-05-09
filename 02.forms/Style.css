@@ -1,0 +1,32 @@
+* {
+    padding: 0px;
+    padding-top: 5px;
+    justify-items: auto;
+    align-items: center;
+}
+
+
+button {
+    cursor: pointer;
+    padding-top: 5px;
+
+}
+
+.title {
+    text-align: center;
+    text-justify: auto;
+    color: rgb(0, 0, 0);
+    font-family: Arial, Helvetica, sans-serif;
+    border-style: ridge;
+    border-width: 5px;
+    border-top-right-radius: 15px;
+    border-inline-start: 15%
+
+
+}
+
+#description {
+    justify-content: center;
+    text-align: center;
+    
+}

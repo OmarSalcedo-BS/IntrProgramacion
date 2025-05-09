@@ -1,0 +1,238 @@
+@import url("https: //font.googleapis.com/css2?family=Rubik:wgth@300;400;500;600;700;800;900&display=swap");
+
+:root {
+    --clr-black: rgb(0, 0, 0);
+    --clr-gray: #7e7e7e;
+    --clr-withe: #ffffff;
+
+    --type-normal: #a8a878;
+    --type-fire: #f08030;
+    --type-wather: #0a0e18;
+    --type-grass: #103a2d;
+    --type-electric: #ffd000;
+    --type-ice: #14708b;
+    --type-fighting: #111a1a;
+    --type-posion: #C03028;
+    --type-ground: #A040A0;
+    --type-flying: #E0C068;
+    --type-psychic: #A890F0;
+    --type-bug: #f85888;
+    --type-rock: #b8a038;
+    --type-ghost: #705898;
+    --type-dark: #705848;
+    --type-dragon: #7038f8;
+    --type-steel: #bbb8d0;
+    --type-fairy: #f0b6bc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--clr-black);
+    font-family: "Rubik", sans-serif;
+    
+}
+ul {
+    list-style-type: none;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+.normal {
+    background-color: var(--type-normal);
+    color: var(--clr-withe);
+}
+
+.fire {
+    background-color: var(--type-fire);
+    color: var(--clr-black);
+}
+
+.wather {
+    background-color: var(--type-wather);
+    color: var(--clr-withe);
+}
+
+.grass {
+    background-color: var(--type-grass);
+    color: var(--clr-withe);
+}
+
+.electric {
+    background-color: var(--type-electric);
+    color: var(--clr-black);
+}
+
+.ice {
+    background-color: var(--type-ice);
+    color: var(--clr-withe);
+}
+
+.fighting {
+    background-color: var(--type-fighting);
+    color: var(--clr-withe);
+}
+
+.posion {
+    background-color: var(--type-posion);
+    color: var(--clr-withe);
+}
+
+.ground {
+    background-color: var(--type-ground);
+    color: var(--clr-withe);
+}
+
+.flying {
+    background-color: var(--type-flying);
+    color: var(--clr-black);
+}
+
+.psychic {
+    background-color: var(--type-psychic);
+    color: var(--clr-black);
+}
+
+.bug {
+    background-color: var(--type-bug);
+    color: var(--clr-withe);
+}
+
+.rock {
+    background-color: var(--type-rock);
+    color: var(--clr-black);
+}
+
+.ghost {
+    background-color: var(--type-ghost);
+    color: var(--clr-withe);
+}
+
+.dark {
+    background-color: var(--type-dark);
+    color: var(--clr-withe);
+}
+
+.dragon {
+    background-color: var(--type-dragon);
+    color: var(--clr-withe);
+}
+
+.steel {
+    background-color: var(--type-steel);
+    color: var(--clr-black);
+}
+
+.fairy {
+    background-color: var(--type-fairy);
+    color: var(--clr-withe);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#search {
+    padding: 10px;
+    width: 80%;
+    margin-bottom: 20px;
+    border: 2px solid #ff0000;
+    border-radius: 8px;
+}
+
+.pokemon {
+    background-color: rgb(253, 253, 253);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+    padding: 20px;
+    margin: 10px;
+    display: inline-block;
+    width: 180px;
+    transition: transform 0.10s;
+}
+
+.pokemon :hover {
+    transform: scale(1.50);
+}
+
+.pokemon img {
+    width: 80px;
+    height: 110px;
+}
+
+.pokemon h2 {
+    margin: 10px 0 5px;
+}
+.pokemon p {
+    margin: 0;
+    color: #555;
+}
+
+.logo-container {
+   width: 1800px;
+   height: 90px;
+   text-align: center;
+   display: flex;
+   justify-content: center;
+   cursor: pointer;
+}
+
+.logo-container:hover {
+    transform: scale(1,1);
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+    padding-inline: 1rem;
+
+
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+
+}
+
+.btn-header {
+    padding: .5rem;
+    border-radius: 100vmax;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, .25);
+    
+
+}
+
+.btn-header:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 2rem rgba(0, 0, 0, .25);
+}
+
+header {
+    padding-block: 1rem;
+    box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, .5);
+    background-color: var(--clr-withe);
+
+
+}
