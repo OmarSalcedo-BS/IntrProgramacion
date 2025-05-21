@@ -1,0 +1,776 @@
+/* Variables CSS con la paleta Twin Tower Castle */
+:root {
+    /* Colores principales */
+    --primary: #F2055C;       /* Rojo vibrante - para elementos destacados */
+    --secondary: #456673;     /* Azul oscuro - para fondos y elementos secundarios */
+    --accent: #F23D3D;        /* Rojo claro - para llamadas a la acción */
+    --light: #C2EDF2;         /* Azul claro - para fondos claros */
+    --medium: #84A9BF;        /* Azul medio - para bordes y detalles */
+    
+    /* Textos */
+    --text-dark: #333333;
+    --text-light: #FFFFFF;
+    
+    /* Sombras */
+    --shadow: 0 2px 10px rgba(68, 101, 114, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--secondary);
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+
+}
+
+/* Controles del header */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto;
+    order: 2;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+
+.logo:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.logo img {
+    height: 100px;
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+    border-radius: 50%;
+}
+
+.logo img:hover {
+   animation: glow 1.2s infinite alternate;
+   filter: drop-shadow(0,0 5px rgba (242, 5, 92, 0.7))
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 2px rgba(255, 0, 0, 0.5));
+    }
+    to {
+        filter: drop-shadow(0 0 8px rgb(242, 5, 5));
+    }
+}
+
+.main-nav {
+    order: 1;
+    margin: 0 auto;
+}
+
+.header-actions, header {
+    flex-direction: row !important;
+    margin-left: auto;
+    order: 2;
+}
+
+/* Asegurar que los íconos no tengan display block */
+.icon-btn, .user-dropdown, .menu-toggle {
+    display: inline-flex !important;
+    float: none !important;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.main-nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+.main-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.main-nav i {
+    font-size: 1.1rem;
+}
+
+
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary);
+}
+
+/* Barra de búsqueda */
+.search-bar {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--medium);
+}
+
+.search-bar:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    padding: 8px 15px;
+    outline: none;
+    width: 200px;
+}
+
+.search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-bar button {
+    background: var(--primary);
+    border: none;
+    color: white;
+    padding: 0 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-bar button:hover {
+    background: var(--accent);
+}
+
+/* Dropdown de usuario */
+.user-dropdown {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.user-dropdown img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+    transition: all 0.3s ease;
+}
+
+.user-dropdown:hover img {
+    border-color: var(--accent);
+    transform: scale(1.05);
+}
+
+.user-dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+
+.dropdown-content {
+    position: absolute;
+    right: 0; /* Alineado a la derecha del ícono */
+    top: 100%;
+    margin-top: 5px;
+    min-width: 200px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 1001;
+}
+
+.dropdown-content a {
+    color: var(--secondary);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--light);
+    color: var(--primary);
+}
+
+.dropdown-content i {
+    width: 20px;
+    text-align: center;
+}
+
+.user-dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botón de menú móvil */
+.menu-toggle {
+    display: none;
+    background: none;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.icon-btn, .user-dropdown, .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+}
+
+.menu-toggle:hover {
+    background: var(--accent);
+}
+
+/* Efectos especiales */
+::selection {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Diseño responsive */
+@media (max-width: 768px) {
+    .main-nav, .search-bar {
+        display: none;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .main-nav, .search-bar {
+        display: none;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    /* Asegurar que los íconos mantengan su alineación */
+    .header-actions {
+        order: 2; /* Si es necesario cambiar el orden */
+    }
+}
+
+/* Modo oscuro con la paleta Twin Tower Castle */
+body.dark-mode {
+    background-color: #0a1a21;
+    color: #e0e0e0;
+}
+
+body.dark-mode header {
+    background-color: var(--secondary);
+    border-bottom: 1px solid #2a4a5a;
+}
+
+body.dark-mode .dropdown-content {
+    background-color: #1e3a47;
+    border: 1px solid #2a4a5a;
+}
+
+body.dark-mode .dropdown-content a {
+    color: #e0e0e0;
+}
+
+body.dark-mode .dropdown-content a:hover {
+    background-color: #2a4a5a;
+    color: var(--primary);
+}
+
+body.dark-mode .search-bar {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: #2a4a5a;
+}
+
+body.dark-mode .search-bar:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* FIX PARA HEADER */
+header > * {
+    flex-shrink: 0; /* Evita que se compriman los elementos */
+}
+
+.header-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    margin-left: auto !important;
+    order: 999 !important;
+}
+
+.main {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-title {
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary);
+}
+
+.featured-games {
+    margin: 3rem 0;
+    position: relative;
+}
+
+.feature-container {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--light);
+}
+.featured-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.featured-container::-webkit-scrollbar-track {
+    background: var(--light);
+    border-radius: 10px;
+}
+
+.featured-container::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 10px;
+}
+
+
+.game-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba (0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3 ease;
+    position: relative;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.game-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.game-info {
+    padding: 1rem;
+}
+
+.game-card .featured {
+    flex: 0 0 220px;
+    min-width: 280px;
+}
+
+.game-card .featured img {
+    height: 220px;
+
+}
+
+.featured-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--primary);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.game-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.price {
+    font-weight: bold;
+    color: var(--secondary);
+    font-size: 1.1rem;
+}
+
+.discount {
+    background-color: var(--accent);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--secondary);
+}
+
+.rating i {
+    color: #FFD700;
+}
+
+.buy-btn {
+    width: 100%;
+    padding: 0.6rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.buy-btn:hover {
+    background-color: var(--accent);
+}
+
+/* Sección de cuadrícula de juegos */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+/* Sección de publicidad */
+.ad-section {
+    margin: 3rem 0;
+}
+
+.ad-banner {
+    background: linear-gradient(135deg, var(--secondary), var(--medium));
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-image: url(Caratulas/banner.jpg);
+    
+}
+
+.ad-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    transform: rotate(30deg);
+}
+
+.ad-banner h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.ad-banner p {
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    font-size: 1rem;
+}
+
+.cta-button:hover {
+    background-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+    
+    .games-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .game-card.featured {
+        min-width: 220px;
+    }
+    
+    .ad-banner h3 {
+        font-size: 1.4rem;
+    }
+}
+
+.site-footer {
+    background-color: var(--secondary);
+    color: white;
+    padding: 3rem 2rem 1rem;
+    position: relative;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 60px;
+}
+
+.site-footer h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--light);
+    position: relative;
+    display: inline-block;
+}
+
+.site-footer h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary);
+}
+
+.footer-social {
+    grid-column: 1;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    display: flex;
+    display: inline-block;
+    gap: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--primary);
+    transform: translateY(-3px);
+}
+
+.footer-newsletter {
+    grid-column: 2;
+}
+
+.newsletter-form {
+    display: flex;
+    max-width: 400px;
+}
+
+.newsletter-form input {
+    flex-grow: 1;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.newsletter-form button {
+    padding: 0 1.5rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.newsletter-form button:hover {
+    background-color: var(--accent);
+}
+
+/* Logo en esquina derecha */
+.footer-logo {
+    position: absolute;
+    right: 2rem;
+    bottom: 1rem;
+}
+
+.footer-logo img {
+    height: 90px;
+    opacity: 0.8;
+    transition: opacity 0.1s;
+    border-radius: 50%;
+}
+.footer-logo:hover img {
+    opacity: 1;
+}
+
+/* Sección inferior */
+.footer-bottom {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links a {
+    color: var(--light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        padding-bottom: 100px;
+    }
+    
+    .footer-newsletter {
+        grid-column: 1;
+    }
+    
+    .footer-logo {
+        right: 50%;
+        transform: translateX(50%);
+        bottom: 40px;
+    }
+    
+    .footer-logo img {
+        height: 60px;
+    }
+}
