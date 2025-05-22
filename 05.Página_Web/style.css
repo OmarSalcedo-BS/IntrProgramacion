@@ -808,3 +808,9 @@ footer {
     transition: background-color 0.2s ease;
     
 }
+
+.Inicio {
+    grid: 1fr;
+    grid-template-columns: 1fr;
+
+}
