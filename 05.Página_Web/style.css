@@ -721,11 +721,11 @@ footer {
 }
 
 .game-card-featured .rating-stars {
-    color: gold;
+    color: rgb(231, 199, 14);
     font-size: var(--font-medium);
 }
 .game-card-featured .rating-stars span {
-    color: var(--color-terciario);
+    color: var(--color-secundario);
     margin-left: 5px;
 }
 
@@ -799,3 +799,12 @@ footer {
     background-color: #A03D30;
 }
 
+.btn-toolbar {
+    text-align: center;
+    justify-content: center;
+    margin: 0px 0px 50px 10px;
+    border-radius: 5px;
+    font-size: var(--font-medium);
+    transition: background-color 0.2s ease;
+    
+}
