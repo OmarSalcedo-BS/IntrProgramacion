@@ -1,0 +1,801 @@
+:root {
+    /* 🎨 Colores (Usando los nombres de tu paleta) */
+    --color-principal: #0B0B0D;
+    --color-secundario: #325959;
+    --color-terciario: #D9D2C5;
+    --color-resaltado: #A68568;
+    --color-detalle: #8C493A;
+
+    /* 🔤 Tamaños de fuente */
+    --font-small: 14px;
+    --font-medium: 18px;
+    --font-large: 24px;
+    --font-title: 32px;
+
+    /* 📏 Espaciados */
+    --padding-small: 10px;
+    --padding-medium: 20px;
+    --padding-large: 40px;
+    --margin-small: 10px;
+    --margin-medium: 20px;
+    --margin-large: 40px;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    color: var(--color-principal);
+    background-color: var(--color-principal);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+/* 🎭 Aplicando las variables en los estilos */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--padding-medium);
+    background-color: var(--color-secundario);
+    background-image: url(Img/Banner.png);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 100;
+
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+}
+
+.logo img {
+    width: 100px;
+    margin-right: var(--margin-small);
+    border-radius: 50%;
+}
+
+.logo img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    animation: glow 1.2s infinite alternate;
+    filter: drop-shadow(0,0 5px rgba(242, 0, 0, 0.5));
+}
+
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 2px rgba(255, 0, 0, 0.5));
+    }
+    to {
+        filter: drop-shadow(0 0 12px rgb(242, 5, 5));
+    }
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-nav li {
+    margin-right: var(--margin-medium);
+    color: var(--color-terciario);
+    margin-right: var(--margin-medium); /* Espacio entre los ítems de la lista */
+    position: relative; /* Importante para cualquier pseudo-elemento futuro o si el a es position: absolute */
+    overflow: hidden; /* Asegura que la sombra y escala no se salgan del li */
+    border-radius: 5px; /* Suaviza las esquinas del área del li */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones para el LI */
+}
+
+.main-nav li:hover {
+    transform: translateY(-3px) scale(1.05); /* El ítem "salta" y crece ligeramente */
+    background-color: rgba(var(--color-principal), 0.3); /* Fondo semitransparente al pasar el mouse */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+    cursor: pointer; /* Indica que es clicable */
+}
+
+.main-nav li a {
+    text-decoration: none;
+    color: var(--texto-claro); /* Color por defecto del texto del enlace */
+    font-size: var(--font-medium);
+    display: flex;
+    align-items: center;
+    padding: 5px 10px; /* Padding interno del enlace dentro del LI */
+    transition: color 0.3s ease; /* Solo transiciona el color, ya que el transform lo hace el LI */
+}
+
+.main-nav li a i {
+    margin-right: 8px; /* Espacio entre el icono y el texto */
+    font-size: 1.1em;
+    transition: color 0.3s ease; /* Solo transiciona el color, ya que el transform lo hace el LI */
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--texto-claro);
+    font-size: var(--font-medium);
+}
+
+
+.main-nav li:hover a {
+    color: var(--color-resaltado); /* Cambia el color del texto del enlace */
+}
+
+.main-nav li:hover a i {
+    color: var(--color-detalle); /* Cambia el color del icono */
+}
+
+/* Estilos específicos para el enlace del modo oscuro */
+.main-nav li:last-child { /* Asume que el modo oscuro es el último li */
+    margin-right: 0; /* No hay margen a la derecha para el último ítem */
+}
+
+.main-nav li:last-child a {
+    padding: 5px; /* Menos padding si es solo un icono */
+}
+
+.main-nav li:last-child a i {
+    margin-right: 0; /* No hay texto, no necesita margen a la derecha */
+}
+
+
+/* Ocultar el botón en pantallas grandes */
+.menu-toggle {
+    display: none; /* Se oculta por defecto en desktop */
+    background: none;
+    border: none;
+    font-size: 34px;
+    color: white;
+    position: absolute; /* Posicionamiento absoluto dentro del header */
+    cursor: pointer;
+    top: 10px 10px; /* Ajusta según la altura de tu header */
+    right: 20px; /* Ajusta la distancia desde el borde derecho */
+}
+
+/* Mostrar el botón y ajustar el menú en móviles */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Asegúrate de que el header tenga position: relative; para que el menú pueda posicionarse absolutamente dentro de él */
+    header {
+        position: relative; /* ¡IMPORTANTE! Añade esto si no lo tienes */
+        justify-content: flex-start;
+    }
+
+    .main-nav ul {
+        display: none; /* Ocultar menú por defecto */
+        flex-direction: column;
+        background-color: var(--color-secundario);
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: var(--padding-medium);
+        box-shadow: 0 8px 16px rgb(0, 0, 0, 0.2);
+        /* CAMBIOS AQUÍ para posicionar el menú */
+        position: absolute; /* O 'fixed' si quieres que se quede quieto al hacer scroll */
+        top: 100%; /* Coloca el menú justo debajo del header */
+        left: 0;
+        width: 100%;
+        padding: var(--padding-medium);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Sutil sombra para destacarlo */
+        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    }
+
+    .main-nav li {
+        margin: 10px 0; /* Espaciado vertical para los ítems del menú */
+        text-align: center; /* Centra los ítems del menú */
+        margin-right: 0;
+    }
+
+    .main-nav.active ul {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        display: flex; /* Mostrar cuando esté activo */
+    }
+
+
+}
+
+.page-wrapper {
+    display: grid;
+    grid-template-columns: 250px 1fr 250px;
+    gap: var(--margin-medium);
+    padding: var(--padding-medium);
+    flex-grow: 1;
+}
+
+.left-sidebar, .right-sidebar {
+    background-color: rgba(var(--color-secundario), 0.8);
+    padding: var(--padding-medium);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    color: withe;
+}
+
+.main-content {
+    background-color: rgba(var(--color-terciario), 0.9); /* Fondo más opaco para el contenido principal */
+    padding: var(--padding-large); /* Más padding para el contenido central */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: var(--color-principal); /* Color de texto para el contenido principal */
+}
+
+.main-content section {
+    margin-bottom: var(--margin-large);
+}
+
+.main-content h2,
+.main-content h3 {
+    color: var(--color-detalle);
+}
+
+footer {
+    background-color: var(--color-principal);
+    color: white;
+    text-align: center;
+    padding: var(--padding-medium);
+    margin-top: auto;
+}
+
+/* --- Media Queries para Responsive (Ajuste del menú móvil y layout de 3 columnas) --- */
+
+/* Menú Móvil (copiado de tu solicitud anterior, con la animación) */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Asegúrate de que el header tenga position: relative; ya lo pusimos arriba */
+
+    .main-nav ul {
+        flex-direction: column;
+        background-color: var(--color-secundario);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: var(--padding-medium);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        z-index: 1000;
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s ease-out;
+    }
+
+    .main-nav li {
+        margin: 10px 0;
+        text-align: center;
+        margin-right: 0;
+    }
+
+    .main-nav.active ul {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* --- Ajustes del Grid para Móviles (para .page-wrapper) --- */
+    .page-wrapper {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+        padding: var(--padding-small); /* Reduce el padding en móvil */
+        gap: var(--margin-small); /* Reduce el gap en móvil */
+    }
+
+    .left-sidebar,
+    .right-sidebar {
+        /* Puedes ocultarlos o hacerlos de ancho completo */
+        display: none;
+        width: 100%;
+        order: 2;
+        margin-bottom: var(--margin-small);
+    
+    }
+
+    .main-content {
+        padding: var(--padding-medium); /* Ajusta el padding para el contenido principal en móvil */
+    }
+
+    .page-wrapper {
+        grid-template-areas:
+            "main-content"
+            "left-sidebar"
+            "right-sidebar";
+    }
+    .main-content { grid-area: main-content; }
+    .left-sidebar { grid-area: left-sidebar; }
+    .right-sidebar { grid-area: right-sidebar; }
+}
+
+/* --- Revertir estilos de menú para Desktop --- */
+@media screen and (min-width: 769px) {
+    .main-nav {
+        display: block;
+        position: static;
+    }
+    .main-nav ul {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        position: static;
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+    }
+    .main-nav li {
+        margin-right: var(--margin-medium);
+        margin-left: 0;
+        text-align: left;
+    }
+}
+
+
+.right-sidebar {
+    background-color: rgba(var(--color-secundario), 0.8);
+    padding: var(--padding-medium);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: var(--margin-medium);
+}
+
+.right-sidebar h2, .right-sidebar h3 {
+    color: var(--color-resaltado);
+    margin-top: 0;
+    margin-bottom: var(--margin-small);
+    border-bottom: 1px solid rgba(var(--color-terciario), 0.3);
+    padding-bottom: var(--padding-small);
+    text-align: center;
+
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    grid-template-columns: 1fr;
+    padding-top: 0;
+    margin-bottom: 0;
+}
+
+
+.search-box input[type="search"] {
+    flex-grow: 1; /* Permite que el input crezca y ocupe el espacio disponible */
+    padding: var(--padding-small);
+    border: 1px solid var(--color-resaltado);
+    border-radius: 5px;
+    background-color: var(--color-principal);
+    color: var(--color-terciario);
+    font-size: var(--font-small);
+    outline: none;
+    box-sizing: border-box;
+    min-width: 0;
+    /* max-width: 100%; ya no es tan crítico con flex-grow */
+}
+
+.search-box input[type="search"]::placeholder {
+    color: rgba(var(--color-terciario), 0.7);
+}
+
+.search-box button {
+    /* max-width: content; /* El botón solo ocupa el espacio de su contenido */
+    background-color: var(--color-resaltado);
+    border: none;
+    padding: var(--padding-small);
+    border-radius: 5px;
+    /* margin-left: 5px; ya no es necesario por el gap */
+    cursor: pointer;
+    color: white;
+    font-size: var(--font-small);
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; /* Evita que el botón se encoja si no hay espacio */
+}
+
+.search-box button:hover {
+    background-color: var(--color-detalle);
+}
+
+.discount-section {
+    text-align: center;
+}
+
+.discount-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--margin-small);
+}
+
+.game-card.discount-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(var(--color-principal));
+    padding: var(--padding-small);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    color: var(--color-secundario);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.game-card.discount-item:hover {
+    transform: scale(1.03); /* Efecto de escala al pasar el mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.game-card.discount-item img {
+    width: 100%; /* La imagen ocupará el 100% del ancho disponible */
+    height: 150px; /* Altura fija para todas las carátulas de descuento */
+    object-fit: cover; /* Recorta la imagen sin distorsionar */
+    border-radius: 5px;
+    margin-bottom: var(--margin-small);
+    border: 2px solid var(--color-resaltado); /* Borde para la carátula */
+}
+
+.game-card.discount-item h4 { /* Título de la oferta */
+    color: var(--color-resaltado);
+    font-size: var(--font-small); /* Tamaño de fuente más pequeño para la sidebar */
+    margin: 0 0 5px 0;
+    line-height: 1.3; /* Espaciado de línea para que no se apriete */
+}
+
+.game-card.discount-item .rating-info {
+    display: flex;
+    flex-direction: column; /* Apila estrellas y botón */
+    align-items: center;
+    width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.game-card.discount-item .rating-stars {
+    color: rgb(221, 190, 12); /* Color para las estrellas */
+    font-size: var(--font-small);
+    margin-bottom: 5px;
+}
+
+.game-card.discount-item .rating-stars span {
+    color: var(--color-secundario); /* Color para el número de rating */
+    margin-left: 5px;
+}
+
+.game-card.discount-item .buy-btn {
+    background-color: var(--color-detalle); /* Color del botón de compra */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: var(--font-small);
+    transition: background-color 0.2s ease;
+    width: 90%; /* Ancho del botón */
+    margin-top: 5px; /* Espacio con el rating */
+}
+
+.game-card.discount-item .buy-btn:hover {
+    background-color: #A03D30; /* Un rojo más oscuro al pasar el mouse */
+}
+
+.streaming-promo {
+    font-size: var(--font-medium);
+    margin-bottom: var(--margin-small);
+
+}
+
+.streaming-promo h2 {
+    font-size: var(--font-medium);
+    margin-bottom: var(--margin-small);
+}
+
+.promo-card {
+    background-color: rgba(var(--color-principal), 0.7);
+    padding: var(--padding-small);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.promo-card:hover {
+    transform: scale(1.03); /* Efecto de escala */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.promo-card img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: var(--margin-small);
+}
+
+.promo-card h3 {
+    color: var(--color-resaltado);
+    font-size: var(--font-medium); /* Ajusta el tamaño de la oferta */
+    margin: 0;
+    line-height: 1.3;
+}
+
+.logo-promo {
+    text-align: center;
+}
+
+.logo-sidebar-item {
+    background-color: rgba(var(--color-principal), 0.7);
+    padding: var(--padding-small);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.logo-sidebar-item:hover {
+    transform: scale(1.03); /* Efecto de escala */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.logo-sidebar-item img {
+    max-width: 70px; /* Tamaño más pequeño para el logo */
+    height: auto;
+    border-radius: 50%; /* Si quieres que el logo sea circular */
+    margin-bottom: var(--margin-small);
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+}
+
+.logo-sidebar-item h3 {
+    color: var(--color-resaltado);
+    font-size: var(--font-medium);
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* --- Media Queries para Responsive (Ajustes de sidebar en móvil) --- */
+@media screen and (max-width: 768px) {
+    /* ... Tus estilos de menú móvil y page-wrapper de una columna ... */
+
+    .left-sidebar,
+    .right-sidebar {
+        display: none; /* Mantener ocultas las barras laterales en móviles */
+    }
+
+    /* Si en algún momento decides mostrar las sidebars en móvil y reorganizarlas,
+       tendrías que ajustar el display de .page-wrapper y el grid-template-areas,
+       y hacer que estas secciones sean de ancho completo.
+    */
+}
+
+
+.left-sidebar {
+    background-color: rgba(var(--color-secundario), 0.8);
+    padding: var(--padding-medium);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: var(--color-terciario);
+    /* Usamos flexbox para organizar las secciones verticalmente en la sidebar */
+    display: flex;
+    flex-direction: column;
+    gap: var(--margin-medium); /* Espacio entre las secciones de la sidebar */
+}
+
+.left-sidebar h2, .left-sidebar h3 {
+    color: var(--color-resaltado);
+    margin-top: 0;
+    margin-bottom: var(--margin-small);
+    border-bottom: 1px solid rgba(var(--color-terciario), 0.3);
+    padding-bottom: var(--padding-small);
+    text-align: center; /* Centrar los títulos de sección */
+}
+
+.sidebar-section {
+    padding-top: var(--padding-small);
+    /* El gap del padre .left-sidebar ya maneja el margin-bottom */
+}
+
+.social-media {
+    text-align: center; /* Centra el título "Redes sociales" */
+}
+
+.social-icons-grid {
+    display: grid;
+    /* Ajusta el número de columnas para tus iconos. Puedes probar 2 o 3. */
+    /* minmax(50px, 1fr) asegura que los iconos se adapten */
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); /* 60px es un buen tamaño base para un icono */
+    gap: var(--margin-small); /* Espacio entre los iconos */
+    justify-content: center; /* Centra la cuadrícula si no ocupa todo el ancho */
+    align-items: center; /* Centra los iconos verticalmente en su celda */
+}
+
+.social-icons-grid li {
+    list-style: none; /* Elimina los puntos de la lista */
+    margin: 0; /* Asegura que no haya márgenes extra de la lista */
+    padding: 0; /* Asegura que no haya padding extra de la lista */
+}
+
+
+.social-icons-grid a {
+    display: block; /* Hace que el enlace ocupe todo el espacio del li */
+    width: 100%; /* Asegura que el enlace llene el ancho de la celda de la cuadrícula */
+    height: 100%; /* Asegura que el enlace llene la altura de la celda */
+    padding: 5px; /* Pequeño padding alrededor del icono dentro del enlace */
+    border-radius: 8px; /* Bordes redondeados para el área clicable */
+    background-color: rgba(var(--color-principal), 0.6); /* Fondo semitransparente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transiciones */
+    text-align: center; /* Asegura que la imagen esté centrada si no ocupa todo el espacio */
+    box-sizing: border-box; /* Importante para que el padding se incluya en el ancho/alto */
+}
+
+.social-icons-grid a:hover {
+    transform: scale(1.1); /* Efecto de escala al pasar el mouse */
+    background-color: var(--color-resaltado); /* Cambia el color de fondo al hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    cursor: pointer;
+}
+
+.social-icons-grid img {
+    width: 100%; /* La imagen ocupa todo el ancho del enlace padre */
+    height: 50px; /* Altura fija para todos los iconos de redes sociales */
+    object-fit: contain; /* Ajusta la imagen dentro de los límites sin recortar */
+    border-radius: 5px; /* Suaviza las esquinas de la imagen si es cuadrada */
+    display: block; /* Elimina cualquier espacio extra debajo de la imagen */
+    margin: 0 auto; /* Centra la imagen si el ancho no es 100% y object-fit es contain */
+}
+
+
+#destacados h2, #destacados p {
+    text-align: center;
+    margin-bottom: var(--margin-medium);
+}
+
+.featured-games-container {
+    display: flex; /* Para que los juegos se muestren en línea horizontal */
+    flex-wrap: wrap; /* Permite que los juegos se envuelvan a la siguiente línea en pantallas más pequeñas */
+    justify-content: center; /* Centra los juegos si no llenan todo el ancho */
+    gap: var(--margin-large); /* Espacio entre las tarjetas de juego */
+    padding: var(--padding-medium) 0; /* Padding superior e inferior para el contenedor */
+}
+
+.game-card-featured {
+    flex: 0 0 auto; /* No crecer, no encoger, ancho basado en contenido o min/max width */
+    width: 250px; /* Ancho fijo para cada tarjeta en desktop */
+    min-width: 200px; /* Ancho mínimo para que no se vea demasiado pequeño */
+    background-color: rgba(var(--color-secundario), 0.7);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* Muy importante para que el overlay no se desborde */
+    position: relative; /* Base para el posicionamiento del overlay */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease-in-out; /* Transición para el efecto de escala en hover */
+}
+
+.game-card-featured:hover {
+    transform: scale(1.05); /* Efecto de escala al pasar el mouse */
+    cursor: pointer;
+}
+
+.game-card-featured img {
+    width: 100%; /* La imagen ocupa todo el ancho de la tarjeta */
+    height: 350px; /* Altura fija para todas las carátulas destacadas */
+    object-fit: contain; /* ¡IMPORTANTE! Asegura que la imagen completa se vea sin recortes */
+    /* background-color: black; /* Opcional: fondo si las carátulas tienen transparencia o no llenan el contain */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: block; /* Elimina espacio extra debajo de la imagen */
+}
+
+
+.game-card-featured .game-info {
+    padding: var(--padding-small);
+    width: 100%; /* Asegura que la info ocupe todo el ancho inferior */
+    box-sizing: border-box; /* Incluye padding en el ancho */
+}
+
+.game-card-featured h3 {
+    color: var(--color-resaltado);
+    font-size: var(--font-large);
+    margin: 10px 0 5px 0;
+}
+
+.game-card-featured .rating-info {
+    display: flex;
+    justify-content: space-around; /* Distribuye espacio entre rating y botón */
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.game-card-featured .rating-stars {
+    color: gold;
+    font-size: var(--font-medium);
+}
+.game-card-featured .rating-stars span {
+    color: var(--color-terciario);
+    margin-left: 5px;
+}
+
+.game-card-featured .buy-btn {
+    background-color: var(--color-detalle);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: var(--font-small);
+    transition: background-color 0.2s ease;
+}
+
+.game-card-featured .buy-btn:hover {
+    background-color: #A03D30;
+}
+
+.game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--color-principal), 0.9); /* Fondo semitransparente oscuro */
+    color: var(--texto-claro);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    padding: var(--padding-medium);
+    box-sizing: border-box; /* Incluye padding en el ancho/alto */
+    opacity: 0; /* Oculto por defecto */
+    visibility: hidden; /* También oculto para que no sea interactuable */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transición suave para aparecer/desaparecer */
+    text-align: center;
+}
+
+.game-card-featured:hover .game-overlay {
+    opacity: 1; /* Hace el overlay visible al pasar el mouse sobre la tarjeta */
+    visibility: visible; /* Hace el overlay interactuable */
+}
+
+.game-overlay h4 {
+    color: white;
+    font-size: var(--font-large);
+    margin-bottom: 10px;
+}
+
+.game-overlay p {
+    font-size: var(--font-small);
+    line-height: 1.5;
+    margin-bottom: var(--margin-medium);
+    max-height: 70%; /* Limita la altura del texto para que quepa */
+    overflow-y: auto; /* Permite scroll si el texto es muy largo */
+    color: white;
+}
+
+.game-overlay .overlay-btn {
+    display: inline-block;
+    background-color: var(--color-detalle);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: var(--font-medium);
+    transition: background-color 0.2s ease;
+}
+
+.game-overlay .overlay-btn:hover {
+    background-color: #A03D30;
+}
+

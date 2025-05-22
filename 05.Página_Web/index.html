@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IsoHaven --Videojuegos y reseñas</title>
+    <link rel="icon" href="Img/Logo.png" type="image/x-icon">
+     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dark-mode.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+   <header>
+    <div class="logo">
+        <img src="Img/Logo.png" alt="IsoHavenLogo">
+        <h1 style="color: white; font-family: sans-serif; font-size: 1.8rem;">IsoHaven</h1>
+    </div>
+    <!-- Icono de menú para móviles -->
+    <button class="menu-toggle">
+    <i class="fas fa-th"></i>
+</button>
+
+
+    <nav class="main-nav" aria-label="Menú principal">
+        <ul>
+            <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="#juegos"><i class="fas fa-gamepad"></i>Juegos</a></li>
+            <li><a href="#categorias"><i class="fas fa-tag"></i>Categorías</a></li>
+            <li><a href="#darkMode"></a></li>
+            <li><a id="darkModeToggle"><i class="fas fa-moon"></i></a></li>
+        </ul>
+    </nav>
+</header>
+     <div class="page-wrapper">
+        <aside class="left-sidebar">
+            <h2>Redes sociales</h2>
+             <div class="sidebar-section social-media">
+                <h3>Redes sociales</h3> <ul class="social-icons-grid"> <li>
+                        <a href="#Facebook" aria-label="Visita nuestro Facebook">
+                            <img src="Img/facebook.png" alt="Facebook Logo">
+                            <span>Facebook</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#Instagram" aria-label="Visita nuestro Instagram">
+                            <img src="Img/Instagram.png" alt="Instagram Logo">
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#TikTok" aria-label="Visita nuestro TikTok">
+                            <img src="Img/tiktok.png" alt="TikTok Logo">
+                            <span>TikTok</span>
+                        </a>
+                    </li>
+
+                      <li>
+                        <a href="#TikTok" aria-label="Visita nuestro TikTok">
+                            <img src="Img/gmail.png" alt="TikTok Logo">
+                            <span>Gmail</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section discounts-section">
+                <h3>Top Ventas</h3>
+                <div class="discount-grid"> <div class="game-card discount-item">
+                        <img src="Caratulas/Godofwar.jpg" alt="God of war">
+                        <h4>God Of War</h4> <div class="rating-info"> <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <span>4.9</span>
+                            </div>
+                            <button class="buy-btn">Añadir al carrito</button>
+                        </div>
+
+                         <div class="sidebar-section discounts-section">
+                <h3>¿Algo mas divertido?</h3>
+                <div class="discount-grid"> <div class="game-card discount-item">
+                        <img src="Caratulas/ghost.jfif" alt="Ghost of tushima">
+                        <h4>Ghost of Tushima</h4> <div class="rating-info"> <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <span>4.7</span>
+                            </div>
+                            <button class="buy-btn">Añadir al carrito</button>
+                        </div>
+        
+        </aside>
+      <main class="main-content">
+            <section id="destacados"> <h2>DESTACADOS</h2>
+                <p>Aquí encontrarás los juegos mejor valorados de esta temporada</p>
+
+                <div class="featured-games-container"> <div class="game-card-featured">
+                        <img src="Caratulas/Re4.jpg" alt="Resident Evil 4 Remake Cover">
+                        <div class="game-info">
+                            <h3>Resident Evil 4 Remake</h3>
+                            <div class="rating-info">
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.8</span>
+                                </div>
+                                <button class="buy-btn">Añadir al carrito</button>
+                            </div>
+                        </div>
+                        <div class="game-overlay">
+                            <h4>Resident Evil 4 Remake</h4>
+                            <p>Una reimaginación magistral que eleva el survival horror a nuevas alturas, combinando acción intensa con una atmósfera aterradora y gráficos impresionantes. ¡Imprescindible!</p>
+                         
+                        </div>
+                    </div>
+
+
+                    <div class="game-card-featured">
+                        <img src="Caratulas/marvelspiderman.jpg" alt="Spider-Man 2 Cover">
+                        <div class="game-info">
+                            <h3>Marvel's Spider-Man 2</h3>
+                            <div class="rating-info">
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.9</span>
+                                </div>
+                                <button class="buy-btn">Añadir al carrito</button>
+                            </div>
+                        </div>
+                        <div class="game-overlay">
+                            <h4>Marvel's Spider-Man 2</h4>
+                            <p>Dos Spider-Man, el doble de diversión y acción trepidante en Nueva York. Combates fluidos, una historia emocionante y nuevos villanos icónicos te esperan.</p>
+                  
+                        </div>
+                    </div>
+
+                             <div class="game-card-featured">
+                        <img src="Caratulas/ragnarok.jpg" alt="Zelda Tears of the Kingdom Cover">
+                        <div class="game-info">
+                            <h3>God Of War: Ragnarok</h3>
+                            <div class="rating-info">
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <span>5.0</span>
+                                </div>
+                                <button class="buy-btn">Añadir al carrito</button>
+                            </div>
+                        </div>
+                        <div class="game-overlay">
+                            <h4>God Of War Ragnarok</h4>
+                            <p>Expande el vasto mundo Kratos y Atreus al enfrentarse al fin de los tiempos de esta tierra desconocida.</p>
+                 
+                        </div>
+                    </div>
+
+                </div>
+            
+            
+            
+            
+            
+            <section id="inicio">
+                <h3>Bienvenido a IsoHaven</h3>
+                <p>Explora los mejores videojuegos y reseñas detalladas.</p>
+            </section>
+            <section id="juegos">
+                <h3>Nuestros Juegos</h3>
+                <p>Descubre nuestra colección.</p>
+            </section>
+            <section id="categorias">
+                <h3>Explora Categorías</h3>
+                <p>Encuentra tus juegos favoritos por género.</p>
+            </section>
+            </main>
+
+        <aside class="right-sidebar">
+            <div class="search-box sidebar-section">
+                <h3></h3>
+                <input type="search" placeholder="Buscar..." aria-label="Buscar juegos">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="sidebar-section discounts-section">
+                <h3>Anuncios y Descuentos</h3>
+                <div class="discount-grid"> <div class="game-card discount-item">
+                        <img src="Caratulas/cyberpunk.jfif" alt="Cyberpunk 2077">
+                        <h4>🎉 ¡Oferta del día! Cyberpunk 2077 al 30%</h4> <div class="rating-info"> <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <span>3.3</span>
+                            </div>
+                            <button class="buy-btn">Añadir al carrito</button>
+                        </div>
+                    </div>
+                    <div class="game-card discount-item">
+                        <img src="Caratulas/bioshok.jpg" alt="Bioshock Infinite">
+                        <h4>⚡️ Últimas unidades - Bioshock Infinite a mitad de precio</h4>
+                        <div class="rating-info">
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <span>4.5</span>
+                            </div>
+                            <button class="buy-btn">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div> </div> <div class="sidebar-section streaming-promo">
+                <h2>Compra con nosotros en oferta tus servicios de Streaming 🎉</h2>
+                <div class="add-card promo-card">
+                    <img src="Img/netflix.png" alt="Promociones Netflix">
+                    <h3>Solo por hoy, 3 meses por un juego</h3> </div>
+            </div>
+
+            <div class="sidebar-section logo-promo">
+                <div class="logo-sidebar-item"> <img src="Img/Logo.png" alt="IsoHaven Logo">
+                    <h3>Todo para nuestros jugadores 😍</h3> </div>
+            </div>
+
+        </aside>
+    </div>
+    <footer>
+        <p>&copy; 2025 IsoHaven. Todos los derechos reservados.</p>
+    </footer>
+
+     <script src="script.js"></script>    
+</body>
+</html>

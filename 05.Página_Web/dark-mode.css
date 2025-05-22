@@ -1,0 +1,31 @@
+/* Modo claro */
+:root {
+    --background-light: #D9D2C5;
+    --text-light: #0B0B0D;
+}
+
+/* Modo oscuro */
+.dark-mode {
+    --background-light: #0B0B0D;
+    --text-light: #D9D2C5;
+}
+
+/* Aplicar los colores */
+body {
+    background-color: var(--background-light);
+    color: var(--text-light);
+}
+
+/* Cambiar color del ícono al activar modo oscuro */
+.dark-mode #darkModeToggle i {
+    color: #A68568; /* Cambia el color del icono para mayor claridad */
+}
+
+
+#darkModeToggle:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    animation: glow 1.2s infinite alternate;
+    filter: drop-shadow(0,0 5px rgba(21, 7, 43, 0.5));
+
+}
