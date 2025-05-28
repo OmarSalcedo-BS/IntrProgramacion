@@ -907,7 +907,7 @@ footer {
 }
 
  #carouselExample:hover {
-     transform: translateY(-3px) scale(1.05); /* El ítem "salta" y crece ligeramente */
+    transform: translateY(-3px) scale(1.05); /* El ítem "salta" y crece ligeramente */
     background-color: rgba(var(--color-principal), 0.3); /* Fondo semitransparente al pasar el mouse */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
     cursor: pointer; /* Indica que es clicable */

@@ -6,7 +6,7 @@ const player = {
     y: 50,
     size: 30,
     color: 'red',
-    speed: 10
+    speed: 12
 };
 
 const enemies = [
