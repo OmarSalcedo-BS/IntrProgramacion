@@ -5,15 +5,15 @@ const player = {
     x: 50,
     y: 50,
     size: 30,
-    color: 'blue',
-    speed: 5
+    color: 'red',
+    speed: 10
 };
 
 const enemy = {
     x: 300,
     y: 300,
     size: 30,
-    color: 'red',
+    color: 'blue',
     dx: 2,
     dy: 2
 };
@@ -108,10 +108,20 @@ document.addEventListener('keydown', (e) => {
 
 });
 
+function resetGame() {
+    score = 0;
+    lives = 3;
+    player.x = 50;
+    player.y = 50;
+    enemy.x = 300;
+    enemy.y = 300;
+    enemy.dx = 2;
+    enemy.dy = 2;
+    gameOver = false;
+    document.getElementById('score').textContent = score;
+    document.getElementById('lives').textContent = lives;
+    document.getElementById('game-over').style.display = 'none';
+    update();
+}
 
-
-
-
-
-
-//update();
+update();
