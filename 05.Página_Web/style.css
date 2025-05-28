@@ -829,12 +829,14 @@ footer {
 .carousel-inner {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    
 }
 
 .carousel-item {
     min-width: 100%;
     transition: opacity 0.5s ease-in-out; 
     display: block; 
+    
 }
 
 .carousel-item img {
@@ -842,6 +844,7 @@ footer {
     height: auto;
     display: block;
     border-radius: 8px;
+
 }
 
 .carousel-item:not(.active) {
