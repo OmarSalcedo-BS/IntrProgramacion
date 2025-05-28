@@ -9,14 +9,12 @@ const player = {
     speed: 10
 };
 
-const enemy = {
-    x: 300,
-    y: 300,
-    size: 30,
-    color: 'blue',
-    dx: 2,
-    dy: 2
-};
+const enemies = [
+    { x: 300, y: 300, size: 30, color: 'blue', dx: 2, dy: 2 },
+    { x: 100, y: 200, size: 30, color: 'black', dx: -3, dy: 3 },
+];
+
+
 
 let score = 0;
 let lives =3;
@@ -35,10 +33,12 @@ function clearCanvas() {
 function draw() {
     clearCanvas();
     drawBox(player.x, player.y, player.size, player.color);
-    drawBox(enemy.x, enemy.y, enemy.size, enemy.color);
+    enemies.forEach(enemy => {
+        drawBox(enemy.x, enemy.y, enemy.size, enemy.color);
+    });
 }
 
-function updateEnemy() {
+function updateEnemy(enemy) {
     enemy.x += enemy.dx;
     enemy.y += enemy.dy;
     
@@ -52,7 +52,7 @@ function updateEnemy() {
 }
 
 
-function checkCollision() {
+function checkCollision(enemy) {
     const dx = player.x - enemy.x;
     const dy = player.y - enemy.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
@@ -62,8 +62,8 @@ function checkCollision() {
         document.getElementById('score').textContent = score;
         enemy.x = Math.random() * (canvas.width - enemy.size);
         enemy.y = Math.random() * (canvas.height - enemy.size);
-        enemy.dx *= 1.05;
-        enemy.dy *= 1.05; 
+        enemy.dx *= 1.10;
+        enemy.dy *= 1.10; 
     }
 }
 
@@ -81,8 +81,11 @@ function update() {
     if (gameOver) return;
 
     draw();
-    updateEnemy();
-    checkCollision();
+    enemies.forEach(enemy => {
+          updateEnemy(enemy);
+        checkCollision(enemy);
+     })
+  
 
     if (
         player.x < 0 || player.x + player.size > canvas.width ||
@@ -113,10 +116,12 @@ function resetGame() {
     lives = 3;
     player.x = 50;
     player.y = 50;
-    enemy.x = 300;
-    enemy.y = 300;
-    enemy.dx = 2;
-    enemy.dy = 2;
+  enemies.forEach(enemy => {
+        enemy.x = Math.random() * (canvas.width - enemy.size);
+        enemy.y = Math.random() * (canvas.height - enemy.size);
+        enemy.dx = 2; // O los valores iniciales que desees
+        enemy.dy = 2;
+    });
     gameOver = false;
     document.getElementById('score').textContent = score;
     document.getElementById('lives').textContent = lives;
