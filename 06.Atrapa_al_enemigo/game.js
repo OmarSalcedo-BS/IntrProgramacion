@@ -14,6 +14,14 @@ const enemies = [
     { x: 100, y: 200, size: 30, color: 'black', dx: -3, dy: 3 },
 ];
 
+const enemyD = {
+    x: 300, 
+    y: 300, 
+    size: 30, 
+    color: 'Yellow', 
+    dx: 2, 
+    dy: 2
+};
 
 
 let score = 0;
@@ -36,6 +44,7 @@ function draw() {
     enemies.forEach(enemy => {
         drawBox(enemy.x, enemy.y, enemy.size, enemy.color);
     });
+    drawBox(enemyD.x, enemyD.y, enemyD.size, enemyD.color);
 }
 
 function updateEnemy(enemy) {
@@ -49,6 +58,20 @@ function updateEnemy(enemy) {
     if (enemy.y <= 0 || enemy.y + enemy.size >= canvas.height) {
         enemy.dy *= -1;
     }
+}
+
+function updateDamaginEnemy() {
+    enemyD.x += enemyD.dx;
+    enemyD.y += enemyD.dy;
+
+     if (enemyD.x <= 0 || enemyD.x + enemyD.size >= canvas.width) {
+                enemyD.dx *= -1;
+            }
+
+     if (enemyD.y <= 0 || enemyD.y + enemyD.size >= canvas.height) {
+                enemyD.dy *= -1;
+            }
+    
 }
 
 
@@ -67,6 +90,18 @@ function checkCollision(enemy) {
     }
 }
 
+function checkDamaginEnemyCollision() { 
+    const dx = player.x - enemyD.x;
+    const dy = player.y - enemyD.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < (player.size / 2) + (enemyD.size / 2)) {
+                loseLife();
+    enemyD.x = Math.random() * (canvas.width - enemyD.size);
+    enemyD.y = Math.random() * (canvas.height - enemyD.size);
+        }
+}
+
 function loseLife() {
     lives--;
     document.getElementById('lives').textContent = lives;
@@ -82,11 +117,14 @@ function update() {
 
     draw();
     enemies.forEach(enemy => {
-          updateEnemy(enemy);
+        updateEnemy(enemy);
         checkCollision(enemy);
-     })
-  
+     });
 
+     updateDamaginEnemy();
+    checkDamaginEnemyCollision();
+
+  
     if (
         player.x < 0 || player.x + player.size > canvas.width ||
         player.y < 0 || player.y + player.size > canvas.height
@@ -122,6 +160,11 @@ function resetGame() {
         enemy.dx = 2; // O los valores iniciales que desees
         enemy.dy = 2;
     });
+     enemyD.x = Math.random() * (canvas.width - enemyD.size);
+            enemyD.y = Math.random() * (canvas.height - enemyD.size);
+            enemyD.dx = 3;
+            enemyD.dy = -3;
+
     gameOver = false;
     document.getElementById('score').textContent = score;
     document.getElementById('lives').textContent = lives;
