@@ -1,7 +1,7 @@
 :root {
     /* 🎨 Colores (Usando los nombres de tu paleta) */
     --color-principal: #0B0B0D;
-    --color-secundario: #325959;
+    --color-secundario: #ffffff;
     --color-terciario: #D9D2C5;
     --color-resaltado: #A68568;
     --color-detalle: #8C493A;
@@ -813,4 +813,99 @@ footer {
     grid: 1fr;
     grid-template-columns: 1fr;
 
+}
+
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    transition: opacity 0.5s ease-in-out; 
+    display: block; 
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.carousel-item:not(.active) {
+    display: none;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para los botones */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10; /* Asegura que los botones estén por encima de las imágenes */
+    border-radius: 50%; /* Botones redondos */
+    font-size: 24px;
+    display: flex; /* Para centrar el ícono */
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Ancho fijo para los botones */
+    height: 50px; /* Alto fijo para los botones */
+}
+
+.carousel-control-prev {
+    left: 10px;
+}
+
+.carousel-control-next {
+    right: 10px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* Puedes usar un SVG para los íconos o crear uno con CSS */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+ #carouselExample:hover {
+     transform: translateY(-3px) scale(1.05); /* El ítem "salta" y crece ligeramente */
+    background-color: rgba(var(--color-principal), 0.3); /* Fondo semitransparente al pasar el mouse */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+    cursor: pointer; /* Indica que es clicable */
 }
