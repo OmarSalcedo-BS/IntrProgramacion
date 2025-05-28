@@ -1,0 +1,26 @@
+
+canvas {
+    border: 2px solid #000;
+    background-color: #ffff;
+
+}
+
+#game-over {
+    font-size: 32px;
+    display: none;
+}
+
+.game-container {
+    margin-top: 20px;
+}
+
+.lead {
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+}
+
+p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+    color: rgb(255, 255, 255);
+}
