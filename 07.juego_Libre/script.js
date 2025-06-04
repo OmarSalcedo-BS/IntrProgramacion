@@ -138,20 +138,20 @@ const initialPlatformCount = 10; //Numero de plataformas
             player.onPlatform = false; // Asumir que no está en plataforma hasta que se demuestre lo contrario
 
             platforms.forEach(plat => {
-                // Colisión solo si el jugador está cayendo y su parte inferior está por encima de la plataforma
-                if (player.vy >= 0 && // Jugador cayendo o quieto verticalmente
+               
+                if (player.vy >= 0 && 
                     player.x < plat.x + plat.width &&
                     player.x + player.width > plat.x &&
                     player.y + player.height > plat.y &&
-                    player.y + player.height < plat.y + plat.height + player.vy) { // Colisión en la parte superior de la plataforma
-                    player.y = plat.y - player.height; // Ajustar posición para que quede encima
-                    player.vy = 0; // Detener caída
+                    player.y + player.height < plat.y + plat.height + player.vy) { 
+                    player.y = plat.y - player.height; 
+                    player.vy = 0; 
                     player.onPlatform = true;
                     plat.currentColor = getRandomHSLColor();
                 }
             });
 
-            // Si el jugador cae por debajo del canvas, es Game Over
+           
             if (player.y > canvas.height) {
                 gameOver = true;
                 createParticles ();
@@ -160,11 +160,11 @@ const initialPlatformCount = 10; //Numero de plataformas
 
         // Función para desplazar las plataformas hacia abajo y generar nuevas
         function scrollPlatforms() {
-            // Si el jugador sube por encima de la mitad de la pantalla, desplazar el mundo
-            const scrollThreshold = canvas.height * 0.4; // 40% de la altura del canvas
+            
+            const scrollThreshold = canvas.height * 0.4; 
             if (player.y < scrollThreshold) {
                 const scrollAmount = scrollThreshold - player.y;
-                player.y = scrollThreshold; // Mantener al jugador en el umbral
+                player.y = scrollThreshold; 
 
                 // Desplazar todas las plataformas hacia abajo
                 platforms.forEach(plat => {
@@ -177,16 +177,14 @@ const initialPlatformCount = 10; //Numero de plataformas
                     maxScore = score;
                 }
 
-                // Generar nuevas plataformas si es necesario
-                // Eliminar plataformas que están muy por debajo del canvas
                 for (let i = platforms.length - 1; i >= 0; i--) {
                     if (platforms[i].y > canvas.height + platform.height) {
                         platforms.splice(i, 1);
                     }
                 }
 
-                // Asegurarse de que siempre haya suficientes plataformas por encima
-                while (platforms.length < initialPlatformCount + 2) { // Mantener un buffer
+                
+                while (platforms.length < initialPlatformCount + 2) { 
                     const highestPlatformY = platforms.reduce((minY, p) => Math.min(minY, p.y), Infinity);
                     generateNewPlatform(highestPlatformY - platform.spacingY);
                 }
@@ -332,21 +330,21 @@ const initialPlatformCount = 10; //Numero de plataformas
 
             movePlayer();
             checkCollisions();
-            scrollPlatforms(); // Desplazar el mundo si el jugador sube
-            updateScoreDisplay(); // Actualizar la puntuación
+            scrollPlatforms(); 
+            updateScoreDisplay(); 
 
-            draw(); // Redibujar todos los elementos
+            draw(); 
 
-            animationFrameId = requestAnimationFrame(update); // Solicitar el siguiente frame
+            animationFrameId = requestAnimationFrame(update); 
         }
 
-        // Eventos de teclado para el control del jugador
+       
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft' || e.key === 'Left') {
                 keys.left = true;
             } else if (e.key === 'ArrowRight' || e.key === 'Right') {
                 keys.right = true;
-            } else if (e.key === ' ' || e.key === 'Spacebar') { // Barra espaciadora para saltar
+            } else if (e.key === ' ' || e.key === 'Spacebar') { 
                 keys.jump = true;
             }
         });
@@ -364,7 +362,7 @@ const initialPlatformCount = 10; //Numero de plataformas
         // Eventos táctiles para los botones en pantalla
         leftButton.addEventListener('touchstart', (e) => { e.preventDefault(); keys.left = true; });
         leftButton.addEventListener('touchend', (e) => { e.preventDefault(); keys.left = false; });
-        leftButton.addEventListener('touchcancel', (e) => { e.preventDefault(); keys.left = false; }); // Para cuando el toque se interrumpe
+        leftButton.addEventListener('touchcancel', (e) => { e.preventDefault(); keys.left = false; }); 
 
         rightButton.addEventListener('touchstart', (e) => { e.preventDefault(); keys.right = true; });
         rightButton.addEventListener('touchend', (e) => { e.preventDefault(); keys.right = false; });
@@ -387,9 +385,9 @@ const initialPlatformCount = 10; //Numero de plataformas
        
         restartButton.addEventListener('click', resetGame);
 
-        // Ajustar el tamaño del canvas y reiniciar el juego al cargar la ventana y al redimensionar
+       
         function setupCanvas() {
-            // Establecer un tamaño base para el canvas que sea responsivo
+            
             const containerWidth = canvas.parentElement.clientWidth;
             canvas.width = Math.min(containerWidth * 0.9, 600); // 90% del ancho del contenedor, máximo 600px
             canvas.height = canvas.width * 1.5; // Relación de aspecto vertical para un juego de escalada
