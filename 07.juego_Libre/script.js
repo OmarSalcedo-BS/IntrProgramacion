@@ -18,6 +18,7 @@ let animationFrameId;
 let score = 0;
 let maxScore = 0;
 let particles = [];
+let platformParticles = [];
 
 const player = {
     width: 20,
@@ -41,7 +42,8 @@ const platform = {
     minX: 20,
     maxX: 20,
     defaultColor: 'green',
-    initialPlatformColor: 'red'
+    initialPlatformColor: 'red',
+    crumbleTime: 190
 };
 
 //Array para almacenar las plataformas
@@ -80,7 +82,9 @@ const initialPlatformCount = 10; //Numero de plataformas
                 width: platform.width,
                 height: platform.height,
                 color: platform.initialPlatformColor,
-                currentColor: platform.initialPlatformColor
+                currentColor: platform.initialPlatformColor,
+                life: platform.crumbleTime,
+                isTouched: false
             });
 
 
@@ -101,7 +105,9 @@ const initialPlatformCount = 10; //Numero de plataformas
                 width: platform.width,
                 height: platform.height,
                 color: platform.defaultColor,
-                currentColor: platform.defaultColor
+                currentColor: platform.defaultColor,
+                life: platform.crumbleTime,
+                isTouched: false
             });
         }
 
@@ -135,19 +141,29 @@ const initialPlatformCount = 10; //Numero de plataformas
 
         // Función para detectar colisiones entre el jugador y las plataformas
         function checkCollisions() {
-            player.onPlatform = false; // Asumir que no está en plataforma hasta que se demuestre lo contrario
+            player.onPlatform = false;
+            let playerLandedOnPlatform = false;
 
             platforms.forEach(plat => {
                
-                if (player.vy >= 0 && 
+             if (player.vy >= 0 && // Jugador cayendo o quieto verticalmente
                     player.x < plat.x + plat.width &&
                     player.x + player.width > plat.x &&
                     player.y + player.height > plat.y &&
-                    player.y + player.height < plat.y + plat.height + player.vy) { 
-                    player.y = plat.y - player.height; 
-                    player.vy = 0; 
-                    player.onPlatform = true;
-                    plat.currentColor = getRandomHSLColor();
+                    player.y + player.height < plat.y + plat.height + player.vy) { // Colisión en la parte superior de la plataforma
+
+                    if (plat.life > 0) {
+                        player.y = plat.y - player.height; 
+                        player.vy = 0; 
+                        player.onPlatform = true;
+                        playerLandedOnPlatform = true; 
+
+                       
+                        if (!plat.isTouched) {
+                            plat.isTouched = true;
+                            plat.currentColor = getRandomHSLColor(); 
+                        }
+                    }
                 }
             });
 
@@ -283,6 +299,48 @@ const initialPlatformCount = 10; //Numero de plataformas
             });
         }
 
+        function createPlatformParticles(x, y, width, height, color) {
+            const particleCount = 15; // Fewer particles for platforms
+            const particleSize = 4;
+            const maxSpeed = 3; // Slower speed for platform pieces
+            for (let i = 0; i < particleCount; i++) {
+                platformParticles.push({
+                    x: x + width / 2 + (Math.random() - 0.5) * width, // Spread around platform
+                    y: y + height / 2 + (Math.random() - 0.5) * height,
+                    vx: (Math.random() - 0.5) * maxSpeed * 2,
+                    vy: (Math.random() - 1) * maxSpeed,
+                    size: particleSize,
+                    life: 80, // Shorter life for platform particles
+                    color: color
+                });
+            }
+        }
+
+        function updatePlatformParticles() {
+            for (let i = platformParticles.length - 1; i >= 0; i--) {
+                const p = platformParticles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += player.gravity; // Affected by gravity
+                p.life -= 2;
+
+                if (p.life <= 0) {
+                    platformParticles.splice(i, 1);
+                }
+            }
+        }
+
+        function drawPlatformParticles() {
+            platformParticles.forEach(p => {
+                ctx.beginPath();
+                const opacity = p.life / 80; // Opacity based on its life
+                ctx.fillStyle = p.color.replace(')', `, ${opacity})`).replace('hsl', 'hsla');
+                ctx.roundRect(p.x, p.y, p.size, p.size, 2);
+                ctx.fill();
+                ctx.closePath();
+            });
+        }
+
         // Función principal de dibujo
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar el canvas
@@ -296,6 +354,7 @@ const initialPlatformCount = 10; //Numero de plataformas
 
             
             drawParticles();
+            drawPlatformParticles();
         }
 
         // Bucle principal del juego
@@ -311,6 +370,8 @@ const initialPlatformCount = 10; //Numero de plataformas
                     showMessage(`¡Caíste! Fin del Juego. La altura que alcanzaste fue de: ${maxScore}`, "red");
                     saveHighScore(maxScore);
                 }
+
+                updatePlatformParticles();
                 return;
             }
 
@@ -333,7 +394,39 @@ const initialPlatformCount = 10; //Numero de plataformas
             scrollPlatforms(); 
             updateScoreDisplay(); 
 
+            for (let i = platforms.length - 1; i >= 0; i--) {
+                const plat = platforms[i];
+                if (plat.isTouched && plat.life > 0) {
+                    plat.life--; // Decrement platform life
+                    // Optional: Change platform color/opacity to show it's crumbling
+                    const crumbleOpacity = plat.life / platform.crumbleTime;
+                    // Assuming plat.currentColor is HSL, convert to HSLA
+                    if (plat.currentColor.startsWith('hsl(')) {
+                        plat.currentColor = plat.currentColor.replace(')', `, ${crumbleOpacity})`).replace('hsl', 'hsla');
+                    } else { // Fallback for initial colors that might be hex/rgb
+                        plat.currentColor = `rgba(160, 174, 192, ${crumbleOpacity})`; // Example: fade to gray
+                    }
+
+                } else if (plat.isTouched && plat.life <= 0) {
+                    // Platform has run out of life, crumble it!
+                    createPlatformParticles(plat.x, plat.y, plat.width, plat.height, plat.currentColor);
+                    platforms.splice(i, 1); // Remove the platform
+
+                    // If player was on this crumbling platform, make them fall
+                    if (player.onPlatform &&
+                        player.x < plat.x + plat.width &&
+                        player.x + player.width > plat.x &&
+                        player.y + player.height >= plat.y &&
+                        player.y + player.height <= plat.y + plat.height) {
+                        player.onPlatform = false;
+                        player.vy = player.gravity; // Make player fall
+                    }
+                }
+            }
+
+
             draw(); 
+            updatePlatformParticles();
 
             animationFrameId = requestAnimationFrame(update); 
         }
