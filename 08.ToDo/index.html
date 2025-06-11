@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Tablero Kaban</h1>
+    <div class="board">
+        <div class="column" data-status="todo">
+            <h2>ToDo</h2>
+            <div class="task-list" id="todo"></div>
+            <button class="add-task" onclick="addTask('todo')">Añadir Tarea</button>
+        </div>
+        <div class="column" data-status="in-progress">
+            <h2>En Progreso</h2>
+            <div class="task-list" id="in-progress"></div>
+        </div>
+        <div class="column" data-status="done">
+            <h2>Hecho</h2>
+            <div class="task-list" id="done"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
