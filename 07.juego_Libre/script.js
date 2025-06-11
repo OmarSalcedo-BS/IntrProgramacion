@@ -22,14 +22,14 @@ let platformParticles = [];
 
 const player = {
     width: 20,
-    height: 30,
+    height: 40,
     x: 0,
     y: 0,
     vx: 0,
     vy: 0,
-    speed: 4,
-    jumpStrength: -15,
-    gravity: 0.4,
+    speed: 2,
+    jumpStrength: -10,
+    gravity: 0.2,
     onPlataform: false,
     hue: 0,
     colorSpeed: 5
@@ -300,17 +300,17 @@ const initialPlatformCount = 10; //Numero de plataformas
         }
 
         function createPlatformParticles(x, y, width, height, color) {
-            const particleCount = 15; // Fewer particles for platforms
+            const particleCount = 15; 
             const particleSize = 4;
-            const maxSpeed = 3; // Slower speed for platform pieces
+            const maxSpeed = 3; 
             for (let i = 0; i < particleCount; i++) {
                 platformParticles.push({
-                    x: x + width / 2 + (Math.random() - 0.5) * width, // Spread around platform
+                    x: x + width / 2 + (Math.random() - 0.5) * width, 
                     y: y + height / 2 + (Math.random() - 0.5) * height,
                     vx: (Math.random() - 0.5) * maxSpeed * 2,
                     vy: (Math.random() - 1) * maxSpeed,
                     size: particleSize,
-                    life: 80, // Shorter life for platform particles
+                    life: 80, 
                     color: color
                 });
             }
@@ -321,7 +321,7 @@ const initialPlatformCount = 10; //Numero de plataformas
                 const p = platformParticles[i];
                 p.x += p.vx;
                 p.y += p.vy;
-                p.vy += player.gravity; // Affected by gravity
+                p.vy += player.gravity; 
                 p.life -= 2;
 
                 if (p.life <= 0) {
@@ -333,7 +333,7 @@ const initialPlatformCount = 10; //Numero de plataformas
         function drawPlatformParticles() {
             platformParticles.forEach(p => {
                 ctx.beginPath();
-                const opacity = p.life / 80; // Opacity based on its life
+                const opacity = p.life / 80; 
                 ctx.fillStyle = p.color.replace(')', `, ${opacity})`).replace('hsl', 'hsla');
                 ctx.roundRect(p.x, p.y, p.size, p.size, 2);
                 ctx.fill();
@@ -397,29 +397,27 @@ const initialPlatformCount = 10; //Numero de plataformas
             for (let i = platforms.length - 1; i >= 0; i--) {
                 const plat = platforms[i];
                 if (plat.isTouched && plat.life > 0) {
-                    plat.life--; // Decrement platform life
-                    // Optional: Change platform color/opacity to show it's crumbling
+                    plat.life--; 
                     const crumbleOpacity = plat.life / platform.crumbleTime;
-                    // Assuming plat.currentColor is HSL, convert to HSLA
                     if (plat.currentColor.startsWith('hsl(')) {
                         plat.currentColor = plat.currentColor.replace(')', `, ${crumbleOpacity})`).replace('hsl', 'hsla');
-                    } else { // Fallback for initial colors that might be hex/rgb
-                        plat.currentColor = `rgba(160, 174, 192, ${crumbleOpacity})`; // Example: fade to gray
+                    } else { 
+                        plat.currentColor = `rgba(160, 174, 192, ${crumbleOpacity})`;
                     }
 
                 } else if (plat.isTouched && plat.life <= 0) {
-                    // Platform has run out of life, crumble it!
+                   
                     createPlatformParticles(plat.x, plat.y, plat.width, plat.height, plat.currentColor);
-                    platforms.splice(i, 1); // Remove the platform
+                    platforms.splice(i, 1); 
 
-                    // If player was on this crumbling platform, make them fall
+                    
                     if (player.onPlatform &&
                         player.x < plat.x + plat.width &&
                         player.x + player.width > plat.x &&
                         player.y + player.height >= plat.y &&
                         player.y + player.height <= plat.y + plat.height) {
                         player.onPlatform = false;
-                        player.vy = player.gravity; // Make player fall
+                        player.vy = player.gravity; 
                     }
                 }
             }
@@ -482,10 +480,10 @@ const initialPlatformCount = 10; //Numero de plataformas
         function setupCanvas() {
             
             const containerWidth = canvas.parentElement.clientWidth;
-            canvas.width = Math.min(containerWidth * 0.9, 600); // 90% del ancho del contenedor, máximo 600px
-            canvas.height = canvas.width * 1.5; // Relación de aspecto vertical para un juego de escalada
+            canvas.width = Math.min(containerWidth * 0.9, 600); 
+            canvas.height = canvas.width * 1.5; 
 
-            // Asegurarse de que la altura mínima sea razonable en pantallas pequeñas
+            
             if (canvas.height < 400) {
                 canvas.height = 400;
             }
