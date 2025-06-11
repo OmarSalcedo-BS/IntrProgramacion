@@ -2,6 +2,18 @@ let draggedTask = null;
 let allTasks = JSON.parse(localStorage.getItem("tasks")) || [];
 document.addEventListener("DOMContentLoaded", () => {
     loadTasks();
+    window.cleanTask = function () {
+        if(confirm('¿Estás seguro de que quieres borrar todas las tareas? ')) {
+        localStorage.removeItem('tasks');
+        document.getElementById('todo').innerHTML = '';
+        document.getElementById('in-progress').innerHTML = '';
+        document.getElementById('done').innerHTML = '';
+        console.log('Todas las tareas han sido eliminadas');
+        alert('¡Todas las tareas han sido limpiadas!');
+        } else {
+            console.log('Limpieza de tareas cancelada')
+        }
+    }
 });
 
 function addTask(columnId){

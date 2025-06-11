@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Tablero Kaban</h1>
+    <h1 onclick="alert('Que miras bobo :v')">Tablero Kaban</h1>
     <div class="board">
         <div class="column" data-status="todo">
             <h2>ToDo</h2>
@@ -23,6 +23,9 @@
             <div class="task-list" id="done"></div>
         </div>
     </div>
+    <div class="limpieza" id="clean">
+            <button class="cleanTask" onclick="cleanTask('cleanTask')">🗑️ Limpiar tareas</button>
+        </div>
     <script src="script.js"></script>
 </body>
 </html>

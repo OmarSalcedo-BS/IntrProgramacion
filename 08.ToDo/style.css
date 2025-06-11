@@ -16,6 +16,12 @@ h1 {
     margin-bottom: 20px;
 }
 
+h1:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    animation: glow 1.2s infinite alternate;
+}
+
 .board {
     display: flex;
     gap: 20px;
@@ -115,7 +121,7 @@ h1 {
 .add-task:hover {
     transform: scale(1.05);
     background-color:red;
-    animation: glow 1.2s infinite alternate;;
+    animation: glow 1.2s infinite alternate;
 }
 
 @keyframes glow {
@@ -142,12 +148,27 @@ h1 {
     border: 2px dashed #c8ddf5;
 }
 
+.limpieza {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    min-width: 20px;
+
+}
+
+.cleanTask {
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.cleanTask:hover {
+    transform: scale(1.05);
+}
 
 @media screen and (max-width: 600px) {
     .board {
         flex-direction: column;
         align-items: center;
-        background-color: #007bff;
     }    
 }
  
@@ -155,6 +176,5 @@ h1 {
     .board {
         flex-direction: column;
         align-items: center;
-        background-color: black;
     }    
 }
