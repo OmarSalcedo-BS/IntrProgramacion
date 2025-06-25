@@ -1,0 +1,227 @@
+:root {
+    --color-principal-oscuro: #2C3E50;
+    --color-acento-primario: #e9bbfd;
+    --color-acento-secundario: #2ECC71;
+    --color-base-clara: #FFFFFF;
+    --color-texto-secundario: #92bcbe;
+}
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.6;
+    color: var(--color-texto-secundario);
+    background-color: var(--color-principal-oscuro);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--color-acento-primario);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-acento-secundario);
+}
+
+h1, h2, h3, h4, h5,  h6 {
+    color: var(--color-acento-secundario);
+    margin-bottom: 0.8em;
+    font-family: serif;
+}
+
+.site-header {
+    background-color: var(--color-principal-oscuro);
+    color: var(--color-base-clara);
+    padding: 1.5em 0;
+    border-bottom: 1px solid var(--color-acento-primario);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 2em auto;
+    padding: 0 20px;
+    flex-grow: 1;
+}
+
+.sidebar {
+    flex: 0 0 250px;
+    background-color: var(--color-principal-oscuro);
+    padding: 2em;
+    border-right: 1px solid var(--color-acento-primario);
+    margin-right: 2em;
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+
+.sidebar-info h3 {
+    color: var(--color-acento-primario);
+    margin-top: 1.5em;
+    border-top: 1px solid var(--color-base-clara);
+}
+
+.social-links a {
+    font-size: 1.8em;
+    margin-right: 15px;
+    color: var(--color-base-clara);
+}
+
+.social-links a:hover {
+    color: var(--color-acento-primario);
+}
+
+.main-content {
+    flex-grow: 1;
+    background-color: var(--color-base-clara);
+    padding: 3em;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.content-section {
+    margin-bottom: 4em;
+    padding-bottom: 2em;
+    border-bottom: 1px dashed var(--color-acento-secundario);
+}
+
+.content-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.content-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+    text-align: center;
+    color: var(--color-principal-oscuro);
+    position: relative;
+    padding-bottom: 0.5em;
+}
+
+.content-section h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 80px;
+    height: 3px;
+    background-color: var(--color-acento-primario);
+}
+
+.prin {
+    text-align: center;
+    padding: 5em 2em;
+    background: linear-gradient(rgba(30, 42, 58, 0.8)), url('https://via.placeholder.com//1200x400/1E2A3A/D8D8E0?text=Fondo+Hero')no-repeat center center/cover;
+    color: var(--color-base-clara);
+    border-radius: 8px;
+    margin-bottom: 4em;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.prin h2 {
+    font-size: 3.5em;
+    color: var(--color-base-clara);
+    margin-bottom: 0.5em;
+}
+
+.prin h2 ::after {
+    background-color: var(--color-acento-secundario);
+}
+
+.prin p {
+    font-size: 1.3em;
+    max-width: 700px;
+    margin: 0 auto 2em;
+}
+
+.btn-primary {
+    background-color: var(--color-acento-primario);
+    color: var(--color-base-clara);
+    border: 2px solid var(--color-acento-primario);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-acento-secundario);
+    color: var(--color-texto-secundario);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-acento-primario);
+    border: 2px solid var(--color-acento-primario);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-acento-primario);
+    color: var(--color-base-clara);
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2em;
+    margin-top: 2em;    
+}
+
+.work-item {
+    background-color: var(--color-principal-oscuro);
+    color: var(--color-base-clara);
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 1px solid var(--color-acento-primario);
+}
+
+.work-item h3 {
+    color: var(--color-acento-primario);
+    font-size: 1.5em;
+}
+
+.work-item p {
+    color: var(--color-texto-secundario);
+    margin-bottom: 1em;
+}
+
+.site-footer {
+    background-color: var(--color-principal-oscuro);
+    color: var(--color-base-clara);
+    padding: 2em 0;
+    text-align: center;
+    border-top: 1px solid var(--color-acento-primario);
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-content p {
+    margin: 0;
+}
+
+
