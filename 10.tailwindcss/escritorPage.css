@@ -1,9 +1,9 @@
 :root {
-    --color-principal-oscuro: #2C3E50;
-    --color-acento-primario: #e9bbfd;
-    --color-acento-secundario: #2ECC71;
-    --color-base-clara: #FFFFFF;
-    --color-texto-secundario: #92bcbe;
+    --color-principal-oscuro: #131414;
+    --color-acento-primario: #9911d3;
+    --color-acento-secundario: #000000;
+    --color-base-clara: #fdfdfd;
+    --color-texto-secundario: #ffffff;
 }
 
 
@@ -91,7 +91,7 @@ h1, h2, h3, h4, h5,  h6 {
     background-color: var(--color-base-clara);
     padding: 3em;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(41, 39, 39, 0.2);
 }
 
 .content-section {
