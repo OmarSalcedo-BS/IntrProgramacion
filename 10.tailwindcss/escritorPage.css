@@ -178,8 +178,9 @@ h1, h2, h3, h4, h5,  h6 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2em;
-    margin-top: 2em;    
+    margin-top: 2em;   
 }
+
 
 .work-item {
     background-color: var(--color-principal-oscuro);
@@ -189,7 +190,21 @@ h1, h2, h3, h4, h5,  h6 {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
     border: 1px solid var(--color-acento-primario);
+    cursor: pointer;
 }
+
+.work-item:hover {
+    transform: scale(1.05);
+    animation: winner-glow 2s infinite alternate ease-in-out;
+}
+
+@keyframes winner-glow {
+  0% { box-shadow: 0 0 10px rgb(7, 14, 107), 0 0 20px rgb(44, 7, 255), 0 0 30px gold; }
+  50% { box-shadow: 0 0 20px rgb(38, 12, 189), 0 0 30px rgb(70, 1, 230), 0 0 40px gold; }
+  100% { box-shadow: 0 0 10px rgb(0, 255, 255), 0 0 20px rgb(1, 162, 255), 0 0 30px gold; }
+}
+
+
 
 .work-item h3 {
     color: var(--color-acento-primario);
